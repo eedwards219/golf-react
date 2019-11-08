@@ -20,3 +20,22 @@
 .App-link {
   color: #09d3ac;
 }
+.bg {
+  /* The image used */
+  background-image: url("./images//bkg-hole-1.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  /* position: fixed; */
+  overflow: auto;
+}
+
+#demo {
+  background: #d0e4f5 url("/images/bkg-hole-1.jpg") no-repeat scroll 0 0;
+}

@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { fetchAllCustomers } from "./store/customers/actions";
+import { fetchAllTeeTimes } from "./store/tee_times/actions";
+import Main from "./components/Main";
+import SearchCards from "./components/SearchCards";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchAllTeeTimes();
+    this.props.fetchAllCustomers();
+    // fetchAllMessagesByUserId(this.props.loggedInUser.id);
+    // this.props.fetchAllMessages();
+  }
+  render() {
+    return (
+      <Router>
+        <script type="text/javascript" src="/js/styles.js"></script>
+
+        <div className="App">
+          <Switch>
+            <Route path="/" component={Main} />
+            <Route path="/search" component={SearchCards} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state, props) => {
+  console.log("state", state);
+  console.log("props", props);
+
+  return {
+    // customers: this.state.customers,
+    // tee_times: this.state.tee_times
+  };
+};
+export default connect(
+  mapStateToProps,
+  {
+    fetchAllCustomers,
+    fetchAllTeeTimes
+
+    // fetchAllMessages
+  }
+)(App);
