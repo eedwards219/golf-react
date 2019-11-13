@@ -7,6 +7,8 @@ import { fetchAllTeeTimes } from "./store/tee_times/actions";
 import Main from "./components/Main";
 import SearchCards from "./components/SearchCards";
 import "./App.css";
+import AddTeeTime from "./components/AddTeeTime";
+import ContentContainer from "./components/ContentContainer";
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +24,10 @@ class App extends Component {
 
         <div className="App">
           <Switch>
-            <Route path="/" component={Main} />
+            <Route exact path="/" component={Main} />
+            <Route path="/" component={ContentContainer}>
+              <Route path="/add" component={AddTeeTime} />
+            </Route>
             <Route path="/search" component={SearchCards} />
           </Switch>
         </div>
